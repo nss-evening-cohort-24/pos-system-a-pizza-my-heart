@@ -1,12 +1,14 @@
 import logoutButton from '../components/buttons/logoutButton';
 import domBuilder from '../components/shared/domBuilder';
-import navBar from '../components/shared/navBar';
-import navigationEvents from '../events/navigationEvents';
+import renderHomePage from '../pages/renderHomePage';
+// import navigationEvents from '../events/navigationEvents';
+import addEvents from '../events/domEvents';
 
 const startApp = () => {
   domBuilder();
-  navBar();
-  navigationEvents();
+  renderHomePage();
+  //   navigationEvents();
+  addEvents();
   logoutButton();
 };
 
