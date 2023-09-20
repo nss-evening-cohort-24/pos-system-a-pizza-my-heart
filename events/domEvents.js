@@ -9,6 +9,11 @@ const addEvents = () => {
     if (e.target.id.includes('viewRevenueBtn')) {
       console.warn('View Revenue Button Clicked!');
     }
+    if (e.target.id.includes('addEditItemBtn')) {
+      const itemName = document.querySelector('#itemNameInput').value;
+      const itemPrice = document.querySelector('#itemPriceInput').value;
+      console.warn(`Item Name: ${itemName} Item Price: ${itemPrice}`);
+    }
   });
 };
 
