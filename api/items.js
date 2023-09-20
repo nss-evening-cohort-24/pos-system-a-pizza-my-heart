@@ -3,7 +3,7 @@ import client from '../utils/client';
 const endpoint = client.databaseURL;
 
 const getItems = (user) => new Promise((resolve, reject) => {
-  fetch(`${endpoint}/items/.json?orderBy="uid"&equalTo="${user.uid}"`, {
+  fetch(`${endpoint}/items.json?orderBy="uid"&equalTo="${user.uid}"`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json'
@@ -14,7 +14,7 @@ const getItems = (user) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
-const postItems = (payload) => new Promise((resolve, reject) => {
+const addItems = (payload) => new Promise((resolve, reject) => {
   fetch(`${endpoint}/items.json`, {
     method: 'POST',
     headers: {
@@ -27,7 +27,7 @@ const postItems = (payload) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
-const patchItems = (payload) => new Promise((resolve, reject) => {
+const updateItems = (payload) => new Promise((resolve, reject) => {
   fetch(`${endpoint}/items/${payload.firebaseKey}.json`, {
     method: 'PATCH',
     headers: {
@@ -65,5 +65,5 @@ const deleteItems = (firebaseKey) => new Promise((resolve, reject) => {
 });
 
 export {
-  getItems, postItems, patchItems, getSingleItems, deleteItems
+  getItems, addItems, updateItems, getSingleItems, deleteItems
 };

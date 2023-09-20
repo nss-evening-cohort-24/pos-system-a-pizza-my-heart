@@ -3,7 +3,7 @@ import client from '../utils/client';
 const endpoint = client.databaseURL;
 
 const getOrders = (user) => new Promise((resolve, reject) => {
-  fetch(`${endpoint}/orders/.json?orderBy="uid"&equalTo="${user.uid}"`, {
+  fetch(`${endpoint}/orders.json?orderBy="uid"&equalTo="${user.uid}"`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json'
@@ -14,7 +14,7 @@ const getOrders = (user) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
-const postOrders = (payload) => new Promise((resolve, reject) => {
+const addOrders = (payload) => new Promise((resolve, reject) => {
   fetch(`${endpoint}/orders.json`, {
     method: 'POST',
     headers: {
@@ -27,7 +27,7 @@ const postOrders = (payload) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
-const patchOrders = (payload) => new Promise((resolve, reject) => {
+const updateOrders = (payload) => new Promise((resolve, reject) => {
   fetch(`${endpoint}/orders/${payload.firebaseKey}.json`, {
     method: 'PATCH',
     headers: {
@@ -65,5 +65,5 @@ const deleteOrders = (firebaseKey) => new Promise((resolve, reject) => {
 });
 
 export {
-  getOrders, postOrders, patchOrders, getSingleOrders, deleteOrders
+  getOrders, addOrders, updateOrders, getSingleOrders, deleteOrders
 };
