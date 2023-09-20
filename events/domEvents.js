@@ -1,3 +1,5 @@
+import renderRevenuePage from '../pages/renderRevenuePage';
+
 const addEvents = () => {
   document.querySelector('#pageBody').addEventListener('click', (e) => {
     if (e.target.id.includes('viewOrderBtn')) {
@@ -7,7 +9,7 @@ const addEvents = () => {
       console.warn('Create Order Button Clicked!');
     }
     if (e.target.id.includes('viewRevenueBtn')) {
-      console.warn('View Revenue Button Clicked!');
+      renderRevenuePage();
     }
     if (e.target.id.includes('addEditItemBtn')) {
       const itemName = document.querySelector('#itemNameInput').value;
