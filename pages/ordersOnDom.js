@@ -1,14 +1,11 @@
 import renderToDOM from '../utils/renderToDom';
 
-const noOrders = () => {
+const showEmptyOrdersPage = () => {
   const domString = '<h1>No Orders found.</h1>';
-  renderToDOM('#', domString);
+  renderToDOM('#pageBody', domString);
 };
 
-const ordersOnDom = (array) => {
-  const addBtn = '<button type="button" class="add-card-btn" id="add-button">Add an Order</button>';
-  renderToDOM('#', addBtn);
-
+const showOrders = (array) => {
   let domString = '';
   if (array.length < 1) {
     domString += '<p>No Orders here!</p>';
@@ -26,7 +23,7 @@ const ordersOnDom = (array) => {
     </div>`;
     });
   }
-  renderToDOM('#', domString);
+  renderToDOM('#pageBody', domString);
 };
 
-export { noOrders, ordersOnDom };
+export { showEmptyOrdersPage, showOrders };
