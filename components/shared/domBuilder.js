@@ -6,7 +6,8 @@ const domBuilder = () => {
   <div id="welcomeMessage">
     <h1>Welcome {Insert User's Name Here}</h1>
   </div>
-  <div id="pageBody"></div>`;
+  <div id="pageBody"></div>
+  <div id="pageBottom"></div>`;
 
   renderToDOM('#app', domString);
 };
