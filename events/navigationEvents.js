@@ -1,23 +1,34 @@
-import createEditForm from '../components/forms/createEditForm';
+// Import necessary modules
+// import createEditForm from '../components/forms/createEditForm';
+import { signOut } from '../utils/auth';
 import { getOrders } from '../api/orders';
-// import { showOrders, showEmptyOrdersPage } from '../pages/orders'; --need to know where the Orders page is that Austin is creating so i can edit my hiphoppizzabtn to point there.
+// import { ordersOnDom } from '../pages/ordersOnDom';
+// import { showOrders, showEmptyOrdersPage } from '../pages/orders';
 
-const navigationEvents = (user) => {
+const navigationEvents = () => {
   document.querySelector('#navigation').addEventListener('click', (e) => {
     if (e.target.id.includes('create-an-order-btn')) {
-      createEditForm(user.uid);
+      console.warn('Create Order Button Clicked!');
     }
-  });
 
-  document.querySelector('#navigation').addEventListener('click', (e) => {
+    if (e.target.id.includes('view-orders-btn')) {
+      console.warn('View Orders Button Clicked!');
+    }
+
     if (e.target.id.includes('hip-hop-pizza-btn')) {
-      getOrders(user.uid).then((array) => {
+      getOrders().then((array) => {
         if (array.length) {
+          // Depending on your actual code, you may want to uncomment and call functions here.
           // showOrders(array);
         } else {
+          // Depending on your actual code, you may want to uncomment and call functions here.
           // showEmptyOrdersPage();
         }
       });
+    }
+
+    if (e.target.id.includes('logout-button')) {
+      signOut();
     }
   });
 };
