@@ -3,16 +3,23 @@
 import { signOut } from '../utils/auth';
 import { getOrders } from '../api/orders';
 // import { ordersOnDom } from '../pages/ordersOnDom';
-// import { showOrders, showEmptyOrdersPage } from '../pages/orders';
+import { showEmptyOrdersPage, showOrders } from '../pages/ordersOnDom';
+import renderCreateEditOrder from '../pages/renderCreateEditOrder';
 
-const navigationEvents = () => {
+const navigationEvents = (user) => {
   document.querySelector('#navigation').addEventListener('click', (e) => {
     if (e.target.id.includes('create-an-order-btn')) {
-      console.warn('Create Order Button Clicked!');
+      renderCreateEditOrder();
     }
 
     if (e.target.id.includes('view-orders-btn')) {
-      console.warn('View Orders Button Clicked!');
+      getOrders(user).then((array) => {
+        if (array.length) {
+          showOrders(array);
+        } else {
+          showEmptyOrdersPage();
+        }
+      });
     }
 
     if (e.target.id.includes('hip-hop-pizza-btn')) {

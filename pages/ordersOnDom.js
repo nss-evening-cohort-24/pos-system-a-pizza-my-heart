@@ -1,14 +1,11 @@
 import renderToDOM from '../utils/renderToDom';
 
-const noOrders = () => {
+const showEmptyOrdersPage = () => {
   const domString = '<h1>No Orders found.</h1>';
-  renderToDOM('#', domString);
+  renderToDOM('#pageBody', domString);
 };
 
-const ordersOnDom = (array) => {
-  const addBtn = '<button type="button" class="add-card-btn" id="add-button">Add an Order</button>';
-  renderToDOM('#', addBtn);
-
+const showOrders = (array) => {
   let domString = '';
   if (array.length < 1) {
     domString += '<p>No Orders here!</p>';
@@ -16,17 +13,19 @@ const ordersOnDom = (array) => {
     array.forEach((e) => {
       domString += `<div class="card" style="width: 18rem;">
       <div class="card-body">
-        <h5 class="card-title" id=""></h5>
-        <p class="card-text" id=""></p>
-        <p class="card-text" id=""></p>
-        <p class="card-text" id=""></p>
-        <button type="button" id="delete-btn--${e.firebaseKey}" class="delete-btn">Delete</button>
-        <button type="button" id="edit-btn--${e.firebaseKey}" class="edit-btn">Edit</button>
+        <h5 class="card-title" id="ordername">${e.orderName}</h5>
+        <p class="card-text" id="orderstatus">${e.status}</p>
+        <p class="card-text" id="customerphone">${e.customerPhone}</p>
+        <p class="card-text" id="customeremail">${e.customerEmail}</p>
+        <p class="card-text" id="customernumber">${e.customerNumber}</p>
+        <p class="card-text" id="orderstatus">${e.isPhone}</p>
+        <button type="button" id="delete-btn--${e.firebasekey}" class="delete-btn">Delete</button>
+        <button type="button" id="edit-btn--${e.firebasekey}" class="edit-btn">Edit</button>
       </div>
     </div>`;
     });
   }
-  renderToDOM('#', domString);
+  renderToDOM('#pageBody', domString);
 };
 
-export { noOrders, ordersOnDom };
+export { showEmptyOrdersPage, showOrders };
