@@ -28,7 +28,7 @@ const addOrders = (payload) => new Promise((resolve, reject) => {
 });
 
 const updateOrders = (payload) => new Promise((resolve, reject) => {
-  fetch(`${endpoint}/orders/${payload.firebaseKey}.json`, {
+  fetch(`${endpoint}/orders/${payload.firebasekey}.json`, {
     method: 'PATCH',
     headers: {
       'Content-Type': 'application/json'
@@ -40,8 +40,8 @@ const updateOrders = (payload) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
-const getSingleOrders = (firebaseKey) => new Promise((resolve, reject) => {
-  fetch(`${endpoint}/orders/${firebaseKey}.json`, {
+const getSingleOrders = (firebasekey) => new Promise((resolve, reject) => {
+  fetch(`${endpoint}/orders/${firebasekey}.json`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json'
@@ -52,8 +52,8 @@ const getSingleOrders = (firebaseKey) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
-const deleteOrders = (firebaseKey) => new Promise((resolve, reject) => {
-  fetch(`${endpoint}/orders/${firebaseKey}.json`, {
+const deleteOrders = (firebasekey) => new Promise((resolve, reject) => {
+  fetch(`${endpoint}/orders/${firebasekey}.json`, {
     method: 'DELETE',
     headers: {
       'Content-Type': 'application/json'

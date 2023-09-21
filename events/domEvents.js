@@ -2,14 +2,42 @@ import renderRevenuePage from '../pages/renderRevenuePage';
 import renderOrderDetailsPage from '../pages/renderOrderDetailsPage';
 import renderCreateItemPage from '../pages/renderCreateItemPage';
 import renderEditItemPage from '../pages/renderEditItemPage';
+import { deleteOrders, getOrders, getSingleOrders } from '../api/orders';
+import { showOrders, showEmptyOrdersPage } from '../pages/ordersOnDom';
+import renderCreateEditOrder from '../pages/renderCreateEditOrder';
 
-const addEvents = () => {
+const addEvents = (user) => {
   document.querySelector('#pageBody').addEventListener('click', (e) => {
     if (e.target.id.includes('viewOrderBtn')) {
-      console.warn('View Order Button Clicked!');
+      getOrders(user).then((array) => {
+        if (array.length) {
+          showOrders(array);
+        } else {
+          showEmptyOrdersPage();
+        }
+      });
     }
     if (e.target.id.includes('createOrderBtn')) {
       console.warn('Create Order Button Clicked!');
+    }
+    if (e.target.id.includes('delete-btn')) {
+      // eslint-disable-next-line no-alert
+      if (window.confirm('Want to delete?')) {
+        const [, firebaseKey] = e.target.id.split('--');
+        deleteOrders(firebaseKey).then(() => {
+          getOrders(user).then((array) => {
+            if (array.length) {
+              showOrders(array);
+            } else {
+              showEmptyOrdersPage();
+            }
+          });
+        });
+      }
+    }
+    if (e.target.id.includes('edit-btn')) {
+      const [, firebaseKey] = e.target.id.split('--');
+      getSingleOrders(firebaseKey).then((obj) => renderCreateEditOrder(obj));
     }
     if (e.target.id.includes('viewRevenueBtn')) {
       renderRevenuePage();
