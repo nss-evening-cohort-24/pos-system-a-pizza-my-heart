@@ -2,6 +2,7 @@
 // import createEditForm from '../components/forms/createEditForm';
 import { signOut } from '../utils/auth';
 import { getOrders } from '../api/orders';
+import renderOrderDetailsPage from '../pages/renderOrderDetailsPage';
 // import { ordersOnDom } from '../pages/ordersOnDom';
 // import { showOrders, showEmptyOrdersPage } from '../pages/orders';
 
@@ -9,6 +10,7 @@ const navigationEvents = () => {
   document.querySelector('#navigation').addEventListener('click', (e) => {
     if (e.target.id.includes('create-an-order-btn')) {
       console.warn('Create Order Button Clicked!');
+      renderOrderDetailsPage();
     }
 
     if (e.target.id.includes('view-orders-btn')) {

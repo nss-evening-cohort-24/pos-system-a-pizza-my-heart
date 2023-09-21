@@ -1,8 +1,10 @@
 import renderToDOM from '../utils/renderToDom';
 
-const renderOrderDetailsPage = () => {
+const renderOrderDetailsPage = (array) => {
   let domString = `
-    <h1> Total: $80.00 </h1>
+  <h1> Total: $80.00 </h1>`;
+
+  const itemCards = array.forEach(`
     <div class="card" style="width: 18rem;">
         <div class="card-body">
             <h5 class="card-title">Card title</h5>
@@ -10,7 +12,8 @@ const renderOrderDetailsPage = () => {
             <button type="button" class="btn btn-link" id="editItemBtn">Edit Item</button>
             <button type="button" class="btn btn-link" id="deleteItemBtn">Delete Item</button>
     </div>
-   `;
+   `);
+  domString += itemCards;
   renderToDOM('#pageBody', domString);
   domString = `
     <div class="d-grid gap-2 col-6 mx-auto">

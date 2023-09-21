@@ -2,6 +2,7 @@ import renderRevenuePage from '../pages/renderRevenuePage';
 import renderOrderDetailsPage from '../pages/renderOrderDetailsPage';
 import renderCreateItemPage from '../pages/renderCreateItemPage';
 import renderEditItemPage from '../pages/renderEditItemPage';
+import { getItems } from '../api/items';
 
 const addEvents = () => {
   document.querySelector('#pageBody').addEventListener('click', (e) => {
@@ -10,11 +11,14 @@ const addEvents = () => {
     }
     if (e.target.id.includes('createOrderBtn')) {
       console.warn('Create Order Button Clicked!');
+      renderOrderDetailsPage();
     }
     if (e.target.id.includes('viewRevenueBtn')) {
       renderRevenuePage();
     }
     if (e.target.id.includes('addItemBtn')) {
+      const [, orderID] = e.target.split('--');
+      getItems(orderID);
       const itemName = document.querySelector('#itemNameInput').value;
       const itemPrice = document.querySelector('#itemPriceInput').value;
       console.warn(`Item Name: ${itemName} Item Price: ${itemPrice}`);
