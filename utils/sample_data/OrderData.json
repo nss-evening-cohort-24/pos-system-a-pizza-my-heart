@@ -56,26 +56,32 @@
     "firebasekey": "-NejoBZ8I9h8o5LVhCJw"
   },
   "-NejoBZ9jiVhYv7jS_id": {
-    "orderName": "nonummy integer non velit donec diam neque vestibulum eget vulputate ut ultrices vel augue vestibulum ante ipsum primis in",
+    "orderName": "john",
     "status": false,
     "customerNumber": 37,
     "isPhone": true,
+    "customerPhone": 9315554444,
+    "customerEmail": "john.johnson@gmail.com",
     "uid": "vjoEettctmho8rzrqMTA2uKGVlh2",
     "firebasekey": "-NejoBZ9jiVhYv7jS_id"
   },
   "-NejoBZAA4zT9SjcA7Xe": {
-    "orderName": "ultrices vel augue vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere",
+    "orderName": "eric",
     "status": false,
     "customerNumber": 49,
     "isPhone": false,
+    "customerPhone": 9313742468,
+    "customerEmail": "eric.johnson@gmail.com",
     "uid": "vjoEettctmho8rzrqMTA2uKGVlh2",
     "firebasekey": "-NejoBZAA4zT9SjcA7Xe"
   },
   "-NejoBZAA4zT9SjcA7Xf": {
-    "orderName": "metus sapien ut nunc vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae",
+    "orderName": "kyle",
     "status": true,
     "customerNumber": 6,
     "isPhone": true,
+    "customerPhone": 9311233214,
+    "customerEmail": "kyle.johnson@gmail.com",
     "uid": "vjoEettctmho8rzrqMTA2uKGVlh2",
     "firebasekey": "-NejoBZAA4zT9SjcA7Xf"
   }
