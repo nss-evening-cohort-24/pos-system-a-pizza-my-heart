@@ -2,7 +2,9 @@ import renderRevenuePage from '../pages/renderRevenuePage';
 import renderOrderDetailsPage from '../pages/renderOrderDetailsPage';
 import renderCreateItemPage from '../pages/renderCreateItemPage';
 import renderEditItemPage from '../pages/renderEditItemPage';
-import { addItems, getItems, updateItems } from '../api/items';
+import {
+  addItems, getItems, getSingleItems, updateItems
+} from '../api/items';
 import { deleteOrders, getOrders, getSingleOrders } from '../api/orders';
 import { showOrders, showEmptyOrdersPage } from '../pages/ordersOnDom';
 import renderCreateEditOrder from '../pages/renderCreateEditOrder';
@@ -44,17 +46,16 @@ const addEvents = (user) => {
       renderRevenuePage();
     }
     if (e.target.id.includes('submitAddItemBtn')) {
-      // const [, orderID] = e.target.split('--');
-      //  TO-DO: Replace the hard-coded parameter below with orderID variable when you're done testing the code.
+      const [, OrderID] = e.target.split('--');
       const payload = {
         name: document.querySelector('#itemNameInput').value,
         price: document.querySelector('#itemPriceInput').value,
-        orderID: '-NejoBZ57ughztNDiuOe'
+        orderID: OrderID
       };
       addItems(payload).then(({ name }) => {
         const patchPayload = { firebasekey: name };
         updateItems(patchPayload).then(() => {
-          getItems('-NejoBZ57ughztNDiuOe').then((array) => {
+          getItems(OrderID).then((array) => {
             renderOrderDetailsPage(array);
           });
         });
@@ -62,19 +63,37 @@ const addEvents = (user) => {
     }
 
     if (e.target.id.includes('editItemBtn')) {
-      console.warn('Edit Item Button Clicked!');
       document.querySelector('#pageBottom').innerHTML = '';
-      renderEditItemPage();
+      const [, itemID] = e.target.id.split('--');
+      getSingleItems(itemID).then((itemObj) => renderEditItemPage(itemObj));
     }
     if (e.target.id.includes('deleteItemBtn')) {
       console.warn('Delete Item Button Clicked!');
     }
     if (e.target.id.includes('submitEditItemBtn')) {
-      const editedItemName = document.querySelector('#itemNameInput').value;
-      const editedItemPrice = document.querySelector('#itemPriceInput').value;
-      console.warn(`Name: ${editedItemName}  Price: ${editedItemPrice}`);
+      const [, itemID] = e.target.id.split('--');
+      getSingleItems(itemID).then((item) => {
+        const payload = {
+          name: document.querySelector('#itemNameInput').value,
+          price: document.querySelector('#itemPriceInput').value,
+          firebasekey: itemID,
+          orderID: item
+        };
+        updateItems(payload).then((editedArray) => {
+          getItems(editedArray.orderID).then((array) => {
+            renderOrderDetailsPage(array);
+          });
+        });
+      });
+
+      // updateItems(payload).then((item) => {
+      //   console.warn(item);
+      // getItems(item.orderID).then((array) => {
+      //   renderOrderDetailsPage(array);
+      // });
+      // });
       //  TO-DO: API Calls to patch in edits to item array
-      renderOrderDetailsPage();
+      // renderOrderDetailsPage();
     }
   });
 
