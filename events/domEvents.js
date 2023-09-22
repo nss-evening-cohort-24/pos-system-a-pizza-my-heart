@@ -3,11 +3,12 @@ import renderOrderDetailsPage from '../pages/renderOrderDetailsPage';
 import renderCreateItemPage from '../pages/renderCreateItemPage';
 import renderEditItemPage from '../pages/renderEditItemPage';
 import {
-  addItems, getItems, getSingleItems, updateItems
+  addItems, getItems, getSingleItems, updateItems, deleteItems
 } from '../api/items';
 import { deleteOrders, getOrders, getSingleOrders } from '../api/orders';
 import { showOrders, showEmptyOrdersPage } from '../pages/ordersOnDom';
 import renderCreateEditOrder from '../pages/renderCreateEditOrder';
+import renderCloseOrderPage from '../pages/renderCloseOrderPage';
 
 const addEvents = (user) => {
   document.querySelector('#pageBody').addEventListener('click', (e) => {
@@ -57,7 +58,7 @@ const addEvents = (user) => {
       });
     }
     if (e.target.id.includes('submitAddItemBtn')) {
-      const [, OrderID] = e.target.split('--');
+      const [, OrderID] = e.target.id.split('--');
       const payload = {
         name: document.querySelector('#itemNameInput').value,
         price: document.querySelector('#itemPriceInput').value,
@@ -67,7 +68,7 @@ const addEvents = (user) => {
         const patchPayload = { firebasekey: name };
         updateItems(patchPayload).then(() => {
           getItems(OrderID).then((array) => {
-            renderOrderDetailsPage(array);
+            renderOrderDetailsPage(OrderID, array);
           });
         });
       });
@@ -75,36 +76,34 @@ const addEvents = (user) => {
 
     if (e.target.id.includes('editItemBtn')) {
       document.querySelector('#pageBottom').innerHTML = '';
-      const [, itemID] = e.target.id.split('--');
-      getSingleItems(itemID).then((itemObj) => renderEditItemPage(itemObj));
+      console.warn(e.target.id);
+      const [, orderID, itemID] = e.target.id.split('--');
+      getSingleItems(itemID).then((itemObj) => renderEditItemPage(itemObj, orderID));
     }
+
     if (e.target.id.includes('deleteItemBtn')) {
       console.warn('Delete Item Button Clicked!');
-    }
-    if (e.target.id.includes('submitEditItemBtn')) {
-      const [, itemID] = e.target.id.split('--');
-      getSingleItems(itemID).then((item) => {
-        const payload = {
-          name: document.querySelector('#itemNameInput').value,
-          price: document.querySelector('#itemPriceInput').value,
-          firebasekey: itemID,
-          orderID: item
-        };
-        updateItems(payload).then((editedArray) => {
-          getItems(editedArray.orderID).then((array) => {
-            renderOrderDetailsPage(array);
-          });
+      const [, orderID, itemID] = e.target.id.split('--');
+      deleteItems(itemID).then(() => {
+        getItems(orderID).then((array) => {
+          renderOrderDetailsPage(orderID, array);
         });
       });
-
-      // updateItems(payload).then((item) => {
-      //   console.warn(item);
-      // getItems(item.orderID).then((array) => {
-      //   renderOrderDetailsPage(array);
-      // });
-      // });
-      //  TO-DO: API Calls to patch in edits to item array
-      // renderOrderDetailsPage();
+    }
+    if (e.target.id.includes('submitEditItemBtn')) {
+      const [, orderid, itemID] = e.target.id.split('--');
+      const payload = {
+        name: document.querySelector('#itemNameInput').value,
+        price: document.querySelector('#itemPriceInput').value,
+        firebasekey: itemID,
+        orderID: orderid
+      };
+      updateItems(payload).then(() => {
+        getItems(orderid).then((array) => {
+          console.warn(array);
+          renderOrderDetailsPage(orderid, array);
+        });
+      });
     }
   });
 
@@ -116,13 +115,14 @@ const addEvents = (user) => {
 
   document.querySelector('#pageBottom').addEventListener('click', (e) => {
     if (e.target.id.includes('addItemBtn')) {
-      // TO-DO: Activate this line of code and feed the variable into renderCreateItemPage.
-      // const [, orderID] = e.target.id.split('--');
-      renderCreateItemPage();
+      const [, orderID] = e.target.id.split('--');
+      renderCreateItemPage(orderID);
       document.querySelector('#pageBottom').innerHTML = '';
     }
     if (e.target.id.includes('goToPaymentBtn')) {
       console.warn('Go to Payment Button Clicked!');
+      renderCloseOrderPage();
+      document.querySelector('#pageBottom').innerHTML = '';
     }
   });
 };
