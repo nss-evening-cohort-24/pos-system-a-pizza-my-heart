@@ -3,12 +3,14 @@ import domBuilder from '../components/shared/domBuilder';
 import renderHomePage from '../pages/renderHomePage';
 import navigationEvents from '../events/navigationEvents';
 import addEvents from '../events/domEvents';
+import renderCloseOrderPage from '../pages/renderCloseOrderPage';
 
-const startApp = () => {
+const startApp = (user) => {
   domBuilder();
   renderHomePage();
-  navigationEvents();
-  addEvents();
+  navigationEvents(user);
+  renderCloseOrderPage();
+  addEvents(user);
   logoutButton();
 };
 
