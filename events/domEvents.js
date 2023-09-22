@@ -42,6 +42,10 @@ const addEvents = (user) => {
     if (e.target.id.includes('viewRevenueBtn')) {
       renderRevenuePage();
     }
+    if (e.target.id.includes('details-btn')) {
+      const [, firebaseKey] = e.target.id.split('--');
+      getSingleOrders(firebaseKey).then((array) => renderOrderDetailsPage(array));
+    }
     if (e.target.id.includes('addItemBtn')) {
       const itemName = document.querySelector('#itemNameInput').value;
       const itemPrice = document.querySelector('#itemPriceInput').value;
