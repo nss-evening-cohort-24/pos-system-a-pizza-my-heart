@@ -108,6 +108,12 @@ const addEvents = (user) => {
     }
   });
 
+  document.querySelector('#pageBody').addEventListener('click', (e) => {
+    if (e.target.id.includes('close-order-btn')) {
+      renderRevenuePage();
+    }
+  });
+
   document.querySelector('#pageBottom').addEventListener('click', (e) => {
     if (e.target.id.includes('addItemBtn')) {
       // TO-DO: Activate this line of code and feed the variable into renderCreateItemPage.
