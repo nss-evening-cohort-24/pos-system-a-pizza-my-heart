@@ -19,7 +19,7 @@ const addEvents = (user) => {
       });
     }
     if (e.target.id.includes('createOrderBtn')) {
-      console.warn('Create Order Button Clicked!');
+      renderCreateEditOrder();
     }
     if (e.target.id.includes('delete-btn')) {
       // eslint-disable-next-line no-alert
@@ -45,7 +45,14 @@ const addEvents = (user) => {
     }
     if (e.target.id.includes('details-btn')) {
       const [, firebaseKey] = e.target.id.split('--');
-      getSingleOrders(firebaseKey).then((array) => renderOrderDetailsPage(array));
+      getItems(firebaseKey).then((array) => {
+        console.warn(array);
+        if (array.length) {
+          renderOrderDetailsPage(array);
+        } else {
+          console.warn('nope');
+        }
+      });
     }
     if (e.target.id.includes('submitAddItemBtn')) {
       // const [, orderID] = e.target.split('--');
