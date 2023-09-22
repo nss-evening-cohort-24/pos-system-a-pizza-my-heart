@@ -9,11 +9,11 @@ import { getItems } from '../api/items';
 // import renderCreateItemPage from '../pages/renderCreateItemPage';
 import renderOrderDetailsPage from '../pages/renderOrderDetailsPage';
 
-const startApp = () => {
+const startApp = (user) => {
   domBuilder();
-  // renderHomePage();
-  navigationEvents();
-  addEvents();
+  renderHomePage();
+  navigationEvents(user);
+  addEvents(user);
   logoutButton();
   getItems('-NejoBZ57ughztNDiuOe').then((array) => {
     renderOrderDetailsPage(array);
