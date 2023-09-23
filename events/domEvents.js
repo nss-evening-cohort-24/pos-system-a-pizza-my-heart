@@ -2,7 +2,9 @@ import renderRevenuePage from '../pages/renderRevenuePage';
 import renderOrderDetailsPage from '../pages/renderOrderDetailsPage';
 import renderCreateItemPage from '../pages/renderCreateItemPage';
 import renderEditItemPage from '../pages/renderEditItemPage';
-import { addItems, getItems, updateItems } from '../api/items';
+import {
+  addItems, deleteItems, getItems, updateItems
+} from '../api/items';
 import { deleteOrders, getOrders, getSingleOrders } from '../api/orders';
 import { showOrders, showEmptyOrdersPage } from '../pages/ordersOnDom';
 import renderCreateEditOrder from '../pages/renderCreateEditOrder';
@@ -78,7 +80,19 @@ const addEvents = (user) => {
       renderEditItemPage();
     }
     if (e.target.id.includes('deleteItemBtn')) {
-      console.warn('Delete Item Button Clicked!');
+      // eslint-disable-next-line no-alert
+      if (window.confirm('Want to delete?')) {
+        const [, firebaseKey] = e.target.id.split('--');
+        deleteItems(firebaseKey).then(() => {
+          getOrders(user).then((array) => {
+            if (array.length) {
+              showOrders(array);
+            } else {
+              showEmptyOrdersPage();
+            }
+          });
+        });
+      }
     }
     if (e.target.id.includes('submitEditItemBtn')) {
       const editedItemName = document.querySelector('#itemNameInput').value;
