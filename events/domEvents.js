@@ -25,6 +25,7 @@ const addEvents = (user) => {
       });
     }
     if (e.target.id.includes('createOrderBtn')) {
+      document.querySelector('#pageBottom').innerHTML = '';
       renderCreateEditOrder();
     }
     if (e.target.id.includes('delete-btn')) {
@@ -54,6 +55,7 @@ const addEvents = (user) => {
       getItems(firebaseKey).then((array) => {
         console.warn(array);
         if (array.length) {
+          renderOrderDetailsPage(firebaseKey, array);
           renderOrderDetailsPage(firebaseKey, array);
         } else {
           console.warn('nope');
@@ -112,10 +114,10 @@ const addEvents = (user) => {
 
   document.querySelector('#pageBody').addEventListener('click', (e) => {
     if (e.target.id.includes('close-order-btn')) {
-      const paymentType = document.querySelector('#payment-type').value;
-      const tip = document.querySelector('#tip-amount').value;
-      console.warn(tip);
-      console.warn(paymentType);
+      const [, tiplessTotal] = e.target.id.split('--');
+      const tipValue = (document.querySelector('#tip-amount').value);
+      const finalTotal = Number(tiplessTotal) + Number(tipValue);
+      console.warn(finalTotal);
       renderRevenuePage();
     }
     if (e.target.id.includes('submit-form-btn')) {
@@ -137,7 +139,8 @@ const addEvents = (user) => {
     }
     if (e.target.id.includes('goToPaymentBtn')) {
       console.warn('Go to Payment Button Clicked!');
-      renderCloseOrderPage();
+      const [, , orderTotal] = e.target.id.split('--');
+      renderCloseOrderPage(orderTotal);
       document.querySelector('#pageBottom').innerHTML = '';
     }
   });

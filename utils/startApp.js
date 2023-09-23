@@ -8,6 +8,10 @@ import addEvents from '../events/domEvents';
 const startApp = (user) => {
   domBuilder();
   renderHomePage(user);
+  // getItems('-NejoBZ57ughztNDiuOe').then((array) => {
+  //   console.warn(array);
+  //   renderOrderDetailsPage('-NejoBZ57ughztNDiuOe', array);
+  // });
   navigationEvents(user);
   // renderCloseOrderPage();
   addEvents(user);
