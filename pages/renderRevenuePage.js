@@ -5,7 +5,7 @@ const renderRevenuePage = () => {
   <br><br/>
   <h1>REVENUE</h1>
   <br><br/>
-  <h1>TOTAL REVENUE: $80</h1>
+  <h1>TOTAL REVENUE: $224</h1>
   <br><br/>
   <p>DATE RANGE: 9/22/2023 - 9/23/2023</p>
   <br>
