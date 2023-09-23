@@ -26,7 +26,7 @@ const navigationEvents = (user) => {
     }
 
     if (e.target.id.includes('hip-hop-pizza-btn')) {
-      renderHomePage();
+      renderHomePage(user);
     }
 
     if (e.target.id.includes('logout-button')) {

@@ -6,7 +6,7 @@ import addEvents from '../events/domEvents';
 
 const startApp = (user) => {
   domBuilder();
-  renderHomePage(user);
+  renderHomePage();
   navigationEvents(user);
   addEvents(user);
   logoutButton();
