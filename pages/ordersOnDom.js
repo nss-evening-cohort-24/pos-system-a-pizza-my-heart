@@ -13,12 +13,11 @@ const showOrders = (array) => {
     array.forEach((e) => {
       domString += `<div class="card" style="width: 18rem;">
       <div class="card-body">
-        <h5 class="card-title" id="ordername">${e.orderName}</h5>
-        <p class="card-text" id="orderstatus">${e.status}</p>
-        <p class="card-text" id="customerphone">${e.customerPhone}</p>
-        <p class="card-text" id="customeremail">${e.customerEmail}</p>
-        <p class="card-text" id="customernumber">${e.customerNumber}</p>
-        <p class="card-text" id="ordertype">${e.isPhone}</p>
+        <h5 class="card-title" id="ordername">customer name: ${e.orderName}</h5>
+        <p class="card-text" id="orderstatus">order status: ${e.status}</p>
+        <p class="card-text" id="customerphone">customer phone number: ${e.customerPhone}</p>
+        <p class="card-text" id="customeremail">customer email: ${e.customerEmail}</p>
+        <p class="card-text" id="ordertype">is this order a walk-in or phone-in: ${e.isPhone}</p>
         <button type="button" id="details-btn--${e.firebasekey}" class="details-btn">Details</button>
         <button type="button" id="delete-btn--${e.firebasekey}" class="delete-btn">Delete</button>
         <button type="button" id="edit-btn--${e.firebasekey}" class="edit-btn">Edit</button>

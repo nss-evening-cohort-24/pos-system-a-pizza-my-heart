@@ -1,7 +1,7 @@
 import renderToDOM from '../../utils/renderToDom';
 import hipHopPizzaImage from '../../image/HHP.png';
 
-const navBar = () => {
+const navBar = (user) => {
   const domString = `
     <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark mb-5">
     <div class="container-fluid">
@@ -17,7 +17,7 @@ const navBar = () => {
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#" id="create-an-order-btn">Create an Order</a>
+              <a class="nav-link" href="#" id="create-an-order-btn--${user.uid}">Create an Order</a>
             </li>
           </ul>
           <span class="navbar-text">

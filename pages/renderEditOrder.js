@@ -1,6 +1,6 @@
 import renderToDOM from '../utils/renderToDom';
 
-const renderCreateEditOrder = (obj = {}) => {
+const renderCreateEditOrder = (obj = {}, orderID) => {
   const domString = `
   <form id="${obj.firebaseKey ? `edit-order--${obj.firebaseKey}` : 'create-order'}" class="new-order-form">
       <div class="form-group">
@@ -17,9 +17,11 @@ const renderCreateEditOrder = (obj = {}) => {
       </div>
       <div class="form-group">
         <label for="text">phone-in or walk-in</label>
-        <input type="text" class="form-control" id="order-type" placeholder="Enter customer name" value="${obj.orderType || ''}" required>
+        <input type="text" class="form-control" id="order-type" placeholder="phone-in or walk-in?" value="${obj.orderType || ''}" required>
       </div>
-      <button type="submit" id="submit-form-btn" class="btn btn-primary mt-3">Submit Order</button>
+      <input type="checkbox" id="orderStatus" name="orderStatus" value="${obj.status || ''}">
+      <label for="orderStatus">Active Order</label><br>
+      <button type="submit" id="submit-form-btn--${orderID}" class="btn btn-primary mt-3">Submit Order</button>
     </form>`;
 
   renderToDOM('#pageBody', domString);
