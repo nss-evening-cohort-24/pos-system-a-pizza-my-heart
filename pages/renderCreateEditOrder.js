@@ -15,6 +15,10 @@ const renderCreateEditOrder = (obj = {}) => {
         <label for="text">customer email</label>
         <input type="languageortech" class="form-control" id="customer-email" aria-describedby="languageortech" placeholder="Enter customer email" value="${obj.customerEmail || ''}" required>
       </div>
+      <div class="form-group">
+        <label for="text">phone-in or walk-in</label>
+        <input type="text" class="form-control" id="order-type" placeholder="Enter customer name" value="${obj.orderType || ''}" required>
+      </div>
       <button type="submit" id="submit-form-btn" class="btn btn-primary mt-3">Submit Order</button>
     </form>`;
 
