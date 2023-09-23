@@ -1,10 +1,11 @@
 import renderToDOM from '../../utils/renderToDom';
+import hipHopPizzaImage from '../../image/HHP.png';
 
 const navBar = () => {
   const domString = `
     <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark mb-5">
     <div class="container-fluid">
-        <img src= alt="hip hop pizza wings" class="navbar-brand title" id="hip-hop-pizza-btn">
+    <img src="${hipHopPizzaImage}" alt="hip hop pizza wings" class="navbar-brand title image-small" id="hip-hop-pizza-btn">
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
