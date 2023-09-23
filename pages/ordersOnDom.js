@@ -18,7 +18,7 @@ const showOrders = (array) => {
         <p class="card-text" id="customerphone">${e.customerPhone}</p>
         <p class="card-text" id="customeremail">${e.customerEmail}</p>
         <p class="card-text" id="customernumber">${e.customerNumber}</p>
-        <p class="card-text" id="orderstatus">${e.isPhone}</p>
+        <p class="card-text" id="ordertype">${e.isPhone}</p>
         <button type="button" id="details-btn--${e.firebasekey}" class="details-btn">Details</button>
         <button type="button" id="delete-btn--${e.firebasekey}" class="delete-btn">Delete</button>
         <button type="button" id="edit-btn--${e.firebasekey}" class="edit-btn">Edit</button>
