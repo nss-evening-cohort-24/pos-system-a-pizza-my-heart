@@ -51,7 +51,7 @@ const addEvents = (user) => {
       getItems(firebaseKey).then((array) => {
         console.warn(array);
         if (array.length) {
-          renderOrderDetailsPage(array);
+          renderOrderDetailsPage(firebaseKey, array);
         } else {
           console.warn('nope');
         }
@@ -109,6 +109,10 @@ const addEvents = (user) => {
 
   document.querySelector('#pageBody').addEventListener('click', (e) => {
     if (e.target.id.includes('close-order-btn')) {
+      const paymentType = document.querySelector('#payment-type').value;
+      const tip = document.querySelector('#tip-amount').value;
+      console.warn(tip);
+      console.warn(paymentType);
       renderRevenuePage();
     }
   });
