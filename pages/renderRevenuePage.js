@@ -5,18 +5,18 @@ const renderRevenuePage = () => {
   <br><br/>
   <h1>REVENUE</h1>
   <br><br/>
-  <h1>TOTAL REVENUE: $</h1>
+  <h1>TOTAL REVENUE: $224</h1>
   <br><br/>
-  <p>DATE RANGE: </p>
+  <p>DATE RANGE: 9/22/2023 - 9/23/2023</p>
   <br>
-  <p>TOTAL TIPS: $</p>
-  <p>TOTAL CALL IN ORDERS: </p>
-  <p>TOTAL WALK IN ORDERS: </p>
+  <p>TOTAL TIPS: $10</p>
+  <p>TOTAL CALL IN ORDERS: 2</p>
+  <p>TOTAL WALK IN ORDERS: 3</p>
   <br>
-  <p>PAYMENT TYPES: </p>
-  <p>CASH - </p>
-  <p>CREDIT - </p>
-  <p>MOBILE - </p>`;
+  <p>PAYMENT TYPES:</p>
+  <p>CASH - 3</p>
+  <p>CREDIT - 5</p>
+  <p>MOBILE - 2</p>`;
 
   renderToDOM('#pageBody', domString);
 };

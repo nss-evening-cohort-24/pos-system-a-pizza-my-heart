@@ -1,16 +1,17 @@
-// import { getItems } from './items'; // Import your getItems function
+// import client from '../utils/client';
 
-// // Assuming you have a user object
-// const user = { uid: 'yourUserId' };
-
-// // Fetch the items for the user
-// getItems(user)
-//   .then((items) => {
-//     // Calculate the total revenue by summing up item prices
-//     const totalRevenue = items.reduce((total, item) => total + item.price, 0);
-//     // eslint-disable-next-line no-console
-//     console.log('Total Revenue:', totalRevenue);
+// const endpoint = client.databaseURL;
+// const addRevenue = (payload) => new Promise((resolve, reject) => {
+//   fetch(`${endpoint}/revenue.json`, {
+//     method: 'POST',
+//     headers: {
+//       'Content-Type': 'application/json',
+//     },
+//     body: JSON.stringify(payload),
 //   })
-//   .catch((error) => {
-//     console.error('Error fetching items:', error);
-//   });
+//     .then((response) => response.json())
+//     .then((data) => resolve(data))
+//     .catch(reject);
+// });
+
+// export default { addRevenue };
