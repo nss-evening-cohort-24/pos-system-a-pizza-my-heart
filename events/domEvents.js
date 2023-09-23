@@ -51,7 +51,7 @@ const addEvents = (user) => {
       getItems(firebaseKey).then((array) => {
         console.warn(array);
         if (array.length) {
-          renderOrderDetailsPage(array);
+          renderOrderDetailsPage(firebaseKey, array);
         } else {
           console.warn('nope');
         }
