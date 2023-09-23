@@ -7,8 +7,9 @@ const renderCloseOrderPage = (orderTotal, obj = {}) => {
         <label for="payment-type">Payment Type</label>
         <select class="form-select" id="payment-type" required>
           <option value="" disabled selected>Select Type</option>
-          <option value="${obj.isPhone || 'phone'}">phone</option>
-          <option value="${obj.isPhone || 'in-person'}">in-person</option>
+          <option value="Cash">Cash</option>
+          <option value="Credit">Credit</option>
+          <option value="Mobile">Mobile</option>
         </select>
       </div>
       <div class="form-group">
