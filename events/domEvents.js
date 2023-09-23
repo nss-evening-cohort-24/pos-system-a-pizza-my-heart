@@ -129,9 +129,9 @@ const addEvents = (user) => {
         uid: user.uid
       };
       addOrders(orderPayload).then(({ name }) => {
-        const payload = { firebaseKey: name };
-        updateOrders(payload).then(() => {
-          getOrders(user).then(showOrders);
+        const patchPayload = { firebasekey: name };
+        updateOrders(patchPayload).then(() => {
+          renderOrdersOnPage(user);
         });
       });
     }
