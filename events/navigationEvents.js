@@ -5,7 +5,6 @@ import { getOrders } from '../api/orders';
 // import renderOrderDetailsPage from '../pages/renderOrderDetailsPage';
 // import { ordersOnDom } from '../pages/ordersOnDom';
 import { showEmptyOrdersPage, showOrders } from '../pages/ordersOnDom';
-// import renderCreateEditOrder from '../pages/renderCreateEditOrder';
 import renderCreateEditOrder from '../pages/renderCreateEditOrder';
 import renderHomePage from '../pages/renderHomePage';
 
