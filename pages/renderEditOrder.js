@@ -19,6 +19,8 @@ const renderCreateEditOrder = (obj = {}, orderID) => {
         <label for="text">phone-in or walk-in</label>
         <input type="text" class="form-control" id="order-type" placeholder="phone-in or walk-in?" value="${obj.orderType || ''}" required>
       </div>
+      <input type="checkbox" id="orderStatus" name="orderStatus" value="${obj.status || ''}">
+      <label for="orderStatus">Active Order</label><br>
       <button type="submit" id="submit-form-btn--${orderID}" class="btn btn-primary mt-3">Submit Order</button>
     </form>`;
 

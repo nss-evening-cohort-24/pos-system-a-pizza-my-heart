@@ -9,9 +9,10 @@ import {
   addOrders, deleteOrders, getOrders, getSingleOrders, updateOrders
 } from '../api/orders';
 import { showOrders, showEmptyOrdersPage } from '../pages/ordersOnDom';
-import renderCreateEditOrder from '../pages/renderCreateEditOrder';
+import renderCreateEditOrder from '../pages/renderEditOrder';
+import renderCreateOrder from '../pages/renderCreateOrder';
 import renderCloseOrderPage from '../pages/renderCloseOrderPage';
-// import renderOrdersOnPage from '../pages/viewOrders';
+import renderOrdersOnPage from '../pages/viewOrders';
 
 const addEvents = (user) => {
   document.querySelector('#pageBody').addEventListener('click', (e) => {
@@ -26,7 +27,7 @@ const addEvents = (user) => {
     }
     if (e.target.id.includes('createOrderBtn')) {
       document.querySelector('#pageBottom').innerHTML = '';
-      renderCreateEditOrder();
+      renderCreateOrder();
     }
     if (e.target.id.includes('delete-btn')) {
       // eslint-disable-next-line no-alert
@@ -55,7 +56,6 @@ const addEvents = (user) => {
       getItems(firebaseKey).then((array) => {
         console.warn(array);
         if (array.length) {
-          renderOrderDetailsPage(firebaseKey, array);
           renderOrderDetailsPage(firebaseKey, array);
         } else {
           console.warn('nope');
@@ -112,7 +112,8 @@ const addEvents = (user) => {
     }
   });
 
-  document.querySelector('#pageBody').addEventListener('click', (e) => {
+  document.querySelector('#pageBody').addEventListener('submit', (e) => {
+    e.preventDefault();
     if (e.target.id.includes('close-order-btn')) {
       const [, tiplessTotal] = e.target.id.split('--');
       const tipValue = (document.querySelector('#tip-amount').value);
@@ -120,18 +121,20 @@ const addEvents = (user) => {
       console.warn(finalTotal);
       renderRevenuePage();
     }
-    if (e.target.id.includes('submit-form-btn')) {
+    if (e.target.id.includes('create-order')) {
       const orderPayload = {
         orderName: document.querySelector('#order-name').value,
+        status: document.querySelector('#orderStatus').checked,
         customerPhone: document.querySelector('#customer-phone').value,
         customerEmail: document.querySelector('#customer-email').value,
-        orderType: document.querySelector('#order-type').value,
+        isPhone: document.querySelector('#order-type').value,
         uid: user.uid
       };
       addOrders(orderPayload).then(({ name }) => {
         const patchPayload = { firebasekey: name };
         updateOrders(patchPayload).then(() => {
           renderOrdersOnPage(user);
+          console.warn(patchPayload);
         });
       });
     }
