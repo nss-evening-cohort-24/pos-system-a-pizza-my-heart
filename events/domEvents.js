@@ -56,6 +56,7 @@ const addEvents = (user) => {
         console.warn(array);
         if (array.length) {
           renderOrderDetailsPage(firebaseKey, array);
+          renderOrderDetailsPage(firebaseKey, array);
         } else {
           console.warn('nope');
         }

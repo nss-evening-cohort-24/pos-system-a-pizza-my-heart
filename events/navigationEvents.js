@@ -7,6 +7,7 @@ import { getOrders } from '../api/orders';
 import { showEmptyOrdersPage, showOrders } from '../pages/ordersOnDom';
 // import renderCreateEditOrder from '../pages/renderCreateEditOrder';
 import renderCreateEditOrder from '../pages/renderCreateEditOrder';
+import renderHomePage from '../pages/renderHomePage';
 
 const navigationEvents = (user) => {
   document.querySelector('#navigation').addEventListener('click', (e) => {
@@ -25,15 +26,7 @@ const navigationEvents = (user) => {
     }
 
     if (e.target.id.includes('hip-hop-pizza-btn')) {
-      getOrders().then((array) => {
-        if (array.length) {
-          // Depending on your actual code, you may want to uncomment and call functions here.
-          // showOrders(array);
-        } else {
-          // Depending on your actual code, you may want to uncomment and call functions here.
-          // showEmptyOrdersPage();
-        }
-      });
+      renderHomePage();
     }
 
     if (e.target.id.includes('logout-button')) {
