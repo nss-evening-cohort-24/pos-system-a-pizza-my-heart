@@ -11,6 +11,7 @@ import renderCreateEditOrder from '../pages/renderCreateEditOrder';
 const navigationEvents = (user) => {
   document.querySelector('#navigation').addEventListener('click', (e) => {
     if (e.target.id.includes('create-an-order-btn')) {
+      document.querySelector('#pageBottom').innerHTML = '';
       renderCreateEditOrder();
     }
 
