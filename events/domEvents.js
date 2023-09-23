@@ -12,6 +12,7 @@ import { showOrders, showEmptyOrdersPage } from '../pages/ordersOnDom';
 import renderCreateEditOrder from '../pages/renderCreateEditOrder';
 import renderCloseOrderPage from '../pages/renderCloseOrderPage';
 import renderOrdersOnPage from '../pages/viewOrders';
+import renderEmptyItemsPage from '../pages/renderEmptyItemsPage';
 
 const addEvents = (user) => {
   document.querySelector('#pageBody').addEventListener('click', (e) => {
@@ -56,9 +57,8 @@ const addEvents = (user) => {
         console.warn(array);
         if (array.length) {
           renderOrderDetailsPage(firebaseKey, array);
-          renderOrderDetailsPage(firebaseKey, array);
         } else {
-          console.warn('nope');
+          renderEmptyItemsPage(firebaseKey);
         }
       });
     }
