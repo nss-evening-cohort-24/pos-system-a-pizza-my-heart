@@ -22,7 +22,7 @@ const navBar = () => {
           </ul>
           <span class="navbar-text">
             <div id="cart-button"></div>
-            <div id="logout-button"></div>
+            <div id="logout-button">LOGOUT</div>
           </span>
         </div>
         </div>

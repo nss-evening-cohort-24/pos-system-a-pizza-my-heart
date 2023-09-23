@@ -10,6 +10,7 @@ const startApp = (user) => {
   navigationEvents(user);
   addEvents(user);
   logoutButton();
+  document.querySelector('#login-form-container').innerHTML = '';
 };
 
 export default startApp;
