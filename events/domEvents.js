@@ -5,10 +5,13 @@ import renderEditItemPage from '../pages/renderEditItemPage';
 import {
   addItems, getItems, getSingleItems, updateItems, deleteItems
 } from '../api/items';
-import { deleteOrders, getOrders, getSingleOrders } from '../api/orders';
+import {
+  addOrders, deleteOrders, getOrders, getSingleOrders
+} from '../api/orders';
 import { showOrders, showEmptyOrdersPage } from '../pages/ordersOnDom';
 import renderCreateEditOrder from '../pages/renderCreateEditOrder';
 import renderCloseOrderPage from '../pages/renderCloseOrderPage';
+import renderOrdersOnPage from '../pages/viewOrders';
 
 const addEvents = (user) => {
   document.querySelector('#pageBody').addEventListener('click', (e) => {
@@ -115,6 +118,15 @@ const addEvents = (user) => {
       const finalTotal = Number(tiplessTotal) + Number(tipValue);
       console.warn(finalTotal);
       renderRevenuePage();
+    }
+    if (e.target.id.includes('submit-form-btn')) {
+      const orderPayload = {
+        orderName: document.querySelector('#order-name').value,
+        customerPhone: document.querySelector('#customer-phone').value,
+        customerEmail: document.querySelector('#customer-email').value,
+        orderType: document.querySelector('#order-type').value
+      };
+      addOrders(orderPayload).then(renderOrdersOnPage(user));
     }
   });
 
