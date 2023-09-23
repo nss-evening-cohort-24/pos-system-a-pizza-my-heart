@@ -6,7 +6,7 @@ import {
   addItems, getItems, getSingleItems, updateItems, deleteItems
 } from '../api/items';
 import {
-  addOrders, deleteOrders, getOrders, getSingleOrders
+  addOrders, deleteOrders, getOrders, getSingleOrders, updateOrders
 } from '../api/orders';
 import { showOrders, showEmptyOrdersPage } from '../pages/ordersOnDom';
 import renderCreateEditOrder from '../pages/renderCreateEditOrder';
@@ -125,9 +125,15 @@ const addEvents = (user) => {
         orderName: document.querySelector('#order-name').value,
         customerPhone: document.querySelector('#customer-phone').value,
         customerEmail: document.querySelector('#customer-email').value,
-        orderType: document.querySelector('#order-type').value
+        orderType: document.querySelector('#order-type').value,
+        uid: user.uid
       };
-      addOrders(orderPayload).then(renderOrdersOnPage(user));
+      addOrders(orderPayload).then(({ name }) => {
+        const patchPayload = { firebasekey: name };
+        updateOrders(patchPayload).then(() => {
+          renderOrdersOnPage(user);
+        });
+      });
     }
   });
 
